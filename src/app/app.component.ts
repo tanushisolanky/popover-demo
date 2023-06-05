@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-// import {OverlayModule} from '@angular/cdk/overlay';
+
 
 @Component({
   selector: 'app-root',
@@ -8,19 +8,15 @@ import { Component } from '@angular/core';
   // standalone: true,
 })
 export class AppComponent {
-  title = 'binding';
-
-  name : string = 'Jaitry';
-
-  
-
-/**
-//  * @title Overlay basic example
- */
-
-  
-// export class CdkOverlayBasicExample {
   isOpen = false;
-// }
-  
+  isOpen1 = false
+
+  closePopover() {
+    this.isOpen = false;
+    this.isOpen1 = false;
+  }
+
+  handleBackdropClick() {
+    this.closePopover();
+  }
 }
