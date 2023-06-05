@@ -1,0 +1,25 @@
+import { Overlay, OverlayConfig, OverlayRef } from '@angular/cdk/overlay';
+import { ComponentPortal } from '@angular/cdk/portal';
+
+constructor(private overlay: Overlay) { }
+
+public openOverlay(): void {
+  let componentRef: ComponentRef<UserProfileComponent>;
+  let overlayRef: OverlayRef;
+
+  const overlayConfig: OverlayConfig = new OverlayConfig();
+  overlayConfig.hasBackdrop = true;
+
+  // Create overlay reference
+  overlayRef = this.overlay.create(overlayConfig);
+
+  // Attach a portal to the overlay
+  const portal: ComponentPortal<UserProfileComponent> = new ComponentPortal<UserProfileComponent>(UserProfileComponent);
+  componentRef = overlayRef.attach(portal);
+
+  // Set backdrop click event
+  overlayRef.backdropClick().subscribe(() => {
+    // Handle backdrop click event here (e.g., close the overlay)
+    overlayRef.detach();
+  });
+}
